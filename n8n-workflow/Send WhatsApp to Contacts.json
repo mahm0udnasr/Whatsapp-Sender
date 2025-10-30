@@ -1,0 +1,106 @@
+{
+  "name": "Send WhatsApp to Contacts",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 0],
+      "id": "06198ef8-a7cc-4086-88a2-4002a2462dd9",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"numbers\": [\n  \"+201200000000\"\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [208, 0],
+      "id": "9caecc9c-54d8-4689-bdae-1ee8ef718955",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "const numbers = $json[\"numbers\"] || [];\n\nreturn numbers.map(num => ({\n  json: {\n    phone: num.trim()\n  }\n}));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [416, 0],
+      "id": "abfab3a5-1847-465f-af68-9e9238afcd1b",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/send",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "={{$json[\"phone\"]}}"
+            },
+            {
+              "name": "message",
+              "value": "=your message"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [624, 0],
+      "id": "b4cb4d7c-b447-4a0c-93da-08d9b9d7f2ac",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "733aa0cd-3314-4805-83ea-a703e34cd4a7",
+  "meta": {
+    "instanceId": "2fdf22f88b86f57ab4ff3fd3062f487dcd8f8ff020ab15510011a1aca506277f"
+  },
+  "id": "M67kfYtewwMRJNOr",
+  "tags": []
+}
