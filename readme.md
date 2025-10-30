@@ -4,6 +4,10 @@
 
 A simple Node.js application to send WhatsApp messages using the WhatsApp Web API.
 
+## Demo
+
+- You can find the demo video [here](demo/demo.mp4).
+
 ## Description
 
 This is a simple Node.js service that automates sending WhatsApp messages. The application works as follows:
@@ -16,18 +20,21 @@ This is a simple Node.js service that automates sending WhatsApp messages. The a
 3. The application uses WhatsApp Web API to connect to your WhatsApp account and send messages.
 
 ## Prerequisites
+
 - Node.js installed on your machine
 - A WhatsApp account
 
 ## Node installation
+
 1. Download and install Node.js from [nodejs.org](https://nodejs.org/).
 2. Verify the installation by running the following command in your terminal:
    ```
    node -v
    ```
-    This should display the installed Node.js version.
+   This should display the installed Node.js version.
 
 ## N8N installation
+
 1. Install n8n globally using npm:
    ```
    npm install -g n8n
@@ -35,10 +42,11 @@ This is a simple Node.js service that automates sending WhatsApp messages. The a
 2. Verify the installation by running:
    ```
     n8n --version
-    ```
-    This should display the installed n8n version.
+   ```
+   This should display the installed n8n version.
 
 ## Installation
+
 1. Clone the repository:
    ```
    git clone https://github.com/mahm0udnasr/whatsapp-sender.git
@@ -53,6 +61,7 @@ This is a simple Node.js service that automates sending WhatsApp messages. The a
    ```
 
 ## Usage
+
 1. Start the application:
    ```
    node index.js
@@ -65,5 +74,6 @@ This is a simple Node.js service that automates sending WhatsApp messages. The a
 4. Scan the QR code displayed in the terminal with your WhatsApp mobile app to connect your WhatsApp account.
 
 ## Note
+
 - Ensure that your WhatsApp account is active and can send messages.
 - Be cautious when sending bulk messages to avoid being flagged for spam by WhatsApp.
